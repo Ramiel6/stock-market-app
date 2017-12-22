@@ -1,0 +1,16 @@
+
+.input-warpper{ 
+    width: 40%;
+}
+.slds-form-element__control {
+    width: 100%;
+}
+.btn-margin-top{
+    margin-top: 17px
+}
+.chart-padding{
+ padding-left: 10%
+}
+.pill-content{
+ padding: 12px;   
+}

@@ -1,0 +1,31 @@
+<ons-row>
+    <ons-col width="80%">
+        <form class="chart-form">
+        <!-- <mat-form-field class="example-full-width">
+        <input matInput [value]="selectedFood" (input)="update($event.target.value)" placeholder="Favorite food"  name="myFood">
+        </mat-form-field> -->
+            <div>
+                <!--<input -->
+                <!--  class="text-input text-input--material full-width" -->
+                <!--  name="myFood"-->
+                <!--  placeholder="Username" -->
+                <!--  type="text" -->
+                <!--  required-->
+                <!--  [value]="selectedFood" -->
+                <!--  (input)="update($event.target.value)"-->
+                <!--  >-->
+                <ngl-form-element label="Add Stock" [error]="hasError ? error : null" class="slds-m-top--small">
+                  <input 
+                    nglFormControl 
+                    type="text" 
+                    name="chartInput"
+                    placeholder="Add Stock Symbol" 
+                    [(ngModel)]="chartValue"
+                    [required]="required"
+                    >
+                    <button type="submit" nglButton="success" (click)="update()">Success</button>
+                </ngl-form-element>
+            </div>
+        </form>
+    </ons-col>
+</ons-row>

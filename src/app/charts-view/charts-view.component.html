@@ -1,0 +1,82 @@
+<div class="slds-notify_container">
+  <ngl-notification *ngIf="showAlert"  [type]="notifyType" severity="error" (nglNotificationClose)="onClose($event)" timeout="3000" class="slds-theme--alert-texture">
+    <h2>{{NotifyMsg}}</h2>
+  </ngl-notification>
+</div>
+<!--<div class="row center-xs">-->
+<!--    <div class="col-xs-12 col-md-12">-->
+<!--        <h1>Charts</h1>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="row center-xs">
+    <div class="col-xs-12 col-md-12">
+        <div class="box" *ngIf="!multi">
+            <app-loading-view></app-loading-view>
+        </div>
+        <div class="box" *ngIf="multi">
+            <ngx-charts-line-chart
+                [view]="view"
+               
+                [results]="multi"
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [autoScale]="autoScale"
+                [timeline] = "timeline"
+                (select)="onSelect($event)">
+            </ngx-charts-line-chart>
+        </div>
+    </div>
+</div>
+
+<div class="row center-xs">
+    <div class="col-xs-12 col-md-12">
+        <div class="box">
+            <div class="slds-p-around_x-small">
+                <ngl-pill (nglPillRemove)="stockRemove(pill.dataset_code)" *ngFor="let pill of pills" class="slds-p-around_xx-small slds-m-around_xx-small">
+                 
+                  <div  class="slds-p-around_x-small">
+                      <p><i class="fas fa-chart-line fa-lg"></i> {{pill.dataset_code}}</p>
+                       <p [innerHTML]="pill.name | replaceExtra"></p>
+                   </div>
+                </ngl-pill>
+            </div>
+         </div>
+    </div>
+</div>
+<div class="row center-xs">
+    <div class="col-xs-12 col-md-12">
+        <div class="box">
+            <form class="slds-form slds-form_inline slds-m-top--small">
+                <!--<div class="input-warpper">-->
+                
+                <ngl-form-element  [error]="hasError ? error : null" class="input-warpper">
+                  <ng-template nglFormLabel><span *ngIf="required" class="slds-text-color_error">(<b>required</b>!)</span> </ng-template>
+                      <input 
+                        nglFormControl 
+                        type="text" 
+                        name="chartInput"
+                        placeholder="Add Stock Symbol" 
+                        [(ngModel)]="addValue"
+                        [required]="required"
+                        >
+                </ngl-form-element>
+                <button type="submit" class="btn-margin-top" nglButton="neutral" (click)="addStock()">
+                    {{!submiting? 'Add': null}}
+                    <span *ngIf="submiting">
+                    <i class="fas fa-cog fa-spin"></i>
+                    <span class="sr-only">Working...</span>
+                    </span>
+                </button>
+               <!--</div>-->
+            </form>
+        </div>
+    </div>
+</div>
+      
+      
